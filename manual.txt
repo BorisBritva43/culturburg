@@ -1,0 +1,164 @@
+==== Базовые команды ====
+   jekyll build - генерация сайта
+   jekyll s - запуск сервера и обновление
+=========================
+
+==== EXTLINK - ВНЕШНИЕ ССЫЛКИ ====
+   1. Копируем файл extlink.rb в папку _plugins
+   2. Прописываем внешнюю ссылку:
+      {% extlink Текст ссылки https://google.com %}
+===================================
+
+==== Структура шаблонов ====
+   1. В index.html задаём шаблон: 
+      ---
+      layout: home
+      ---
+
+   2. В папке _layouts создаём файл home.html размещаем верстку с чанками
+
+   3. В папке _includes создаем чанки 
+      header.html 
+
+   4. Добаляем чанк в верстку 
+      {% include /header.html %}
+==============================
+
+==== Задаём переменные ====
+   1. Переменные задаём в файле _config.yml - (imagehome: img/geektop.jpg)
+   2. Интегрируем в вестку - {{ site.imagehome }}
+===========================
+
+==== Создаём категории ====
+   1. В папке blog создаём папку категории electronics - и в ней файл index.html 
+   2. ---
+      layout: category
+      category: electronics
+      title: Електроника
+      description: Електроника - статьи сайта GeekTOP
+      image: 'images/electronics/cover.jpg'
+      pagination:
+         enabled: true
+         category: electronics
+      ---
+=============================
+
+==== Вывод статей из определенной категории ====
+   {% for post in site.categories.catname limit: 2 offset: 0 %}
+   {% include /home-first-items-1.html %}
+   {% endfor %}
+================================================
+
+==== Вывод статей из текущей категории ====
+   {% for post in paginator.posts limit: 1 offset: 0 %}
+   {% include /home-diy-item-1.html %}
+   {% endfor %}
+============================================
+
+==== Настройки страницы отдельного поста ====
+---
+layout: post
+title:  Австралийцы создали прототип «квантового интернета»
+description: Ученые из австралии научились составлять из отдельных квантовых компьютеров сложные сети и получили подобие квантового интернета
+categories: electronics
+catname: Электроника
+image: "images/electronics/2018/2018-01-05-avstralijcy-sozdali-prototip-kvantovogo-interneta/1.jpg"
+thumb: "images/electronics/2018/2018-01-05-avstralijcy-sozdali-prototip-kvantovogo-interneta/1t.jpg"
+permalink: "blog/:categories/:year-:month-:day-:slug.html"
+---
+Далее текст поста....
+==============================================
+
+==== ВЫВОД ПРИВЬЮ ПОСТА ====
+<div class="overlay item-title" style="background-image: url({{ post.thumb }})">
+         <div class="item-title-content">
+
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+
+            <div class="item-social">
+               <div class="item-comments" title="Количество комментариев">
+                  <i class="fa fa-comments"></i><a href="{{ post.url }}#disqus_thread" class="item-comments-count">26</a>
+               </div>
+               <div class="fa fa-share-alt" title="Поделиться в соц. сетях"></div>
+               <div class="likely likely-custom" data-url="{{ site.url }}{{ post.url }}" data-media="{{ site.url }}/{{ post.image }}"
+                  data-title="{{ site.title }}">
+                  <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                  <div class="facebook" title="Поделиться в Facebook">Facebook</div>
+                  <div class="twitter" title="Поделиться в Twitter">Twitter</div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+============================
+
+==== ВЫВОДИМ ДАТУ ====
+<span class="date">{{ post.date | date: '%d' }}/{{ post.date | date: '%m' }}/{{ post.date | date: '%Y' }}</span>
+======================
+
+==== Выводим ВЫДЕРЖКУ из контента ====
+{{ post.content | strip_html | truncatewords: 20 }}
+======================================
+
+==== ПАГИНАЦИЯ ====
+<!-- PAGINATION -->
+<!-- Проверка на больше одной страницы -->
+{% if paginator.total_pages > 1 %}
+	{% if paginator.next_page %}
+	<a href="{{ paginator.next_page_path }}" class="button">Следующая страница <i class="fa fa-angle-double-right"></i></a>
+	{% endif %}
+{% endif %}
+						
+{% if paginator.page_trail %}
+<div class="pagination">
+	<!-- Если есть предыдущая страница выводим ссылку -->
+	{% if paginator.previous_page %}
+	<a href="{{ paginator.previous_page_path }}" class="pagination-left" title="Предыдущая страница">&laquo;</a>
+	<!-- Если нет, выводим заглушку -->
+	{% else %}
+	<span class="pagination-left" title="Предыдущая страница">&laquo;</span>
+	{% endif %}
+
+	<!-- Номера страниц -->
+	{% for trail in paginator.page_trail %}
+		{% if page.url == trail.path %}
+			<span class="active">{{ trail.num }}</span>
+		{% else %}
+			<a href="{{ trail.path | remove: 'index.html' }}" title="{{ trail.title }}">{{ trail.num }}</a>
+		{% endif %}
+	{% endfor %}
+
+	<!-- Если есть следующая страница выводим ссылку -->
+	{% if paginator.next_page %}
+	<a href="{{ paginator.next_page_path }}" class="pagination-right" title="Следующая страница">&raquo;</a>
+	<!-- Если нет, выводим заглушку -->
+	{% else %}
+	<span class="pagination-right" title="Следующая страница">&raquo;</span>
+	{% endif %}
+</div>
+{% endif %}
+
+<!-- PAGINATION END -->
+====================================================================================================================
+
+==== Выводим последнюю статью из данной категории ====
+{% for post in site.categories.diy limit: 1 offset: 0 %}
+<a class="lb-item-header" href="{{ post.url }}">{{ post.title }}</a>
+<div class="lb-footer">
+   <div class="item-comments" title="Количество комментариев">
+   <i class="fa fa-comment"></i><a class="item-comments-count" href="{{ post.url }}#disqus_thread">26</a>
+   <span class="date">{{ post.date | date: '%d' }}/{{ post.date | date: '%m' }}/{{ post.date | date: '%Y' }}</span>
+   </div>
+</div>
+{% endfor %}
+=======================================================
+
+==== Выводим ещё статьи из текущей категории ====
+{% capture related_posts %}{{ page.categories }}{% endcapture %}
+{% assign collection = site.categories[related_posts] %}
+{% for article in collection limit: 6 %}
+	{% unless page.url == article.url %}
+		<li><a href="{{ article.url }}">{{ article.title }}</a></li>
+	{% endunless %}
+{% endfor %}
+==================================================

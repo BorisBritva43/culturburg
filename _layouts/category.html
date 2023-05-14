@@ -1,0 +1,165 @@
+{% include /category-header.html %}
+
+	<!-- Top line Menu -->
+	{% include /top-line.html %}
+	<!-- Top line Menu -->
+
+	<div class="pattern pattern-cat-header">
+		<div class="cat-header overlay" style="background-image: url({{ page.image }})">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="cat-header-block">
+							<h1>{{ page.title }}</h1>
+							<p>{{ page.description }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="cat-list-first">
+		<div class="container-fluid">
+
+			<!-- <div class="ad top-ad">
+				{% include /ad-horizontal.html %}
+			</div> -->
+
+			<section class="type-one type-one-cat">
+				<div class="row">
+	
+					{% for post in paginator.posts limit: 1 offset: 0 %}
+         	{% include /home-diy-item-1.html %}
+         	{% endfor %}
+	
+					<div class="col-md-5 item-title-white">
+	
+						{% for post in paginator.posts limit: 2 offset: 1 %}
+            {% include /home-diy-item-2.html %}
+            {% endfor %}
+	
+					</div>
+	
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	<div class="cat-list">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<div class="cat-list-wrap">
+
+							<div class="cat-list-wrap">
+
+								{% for post in paginator.posts offset: 3 %}
+            		{% include /category-list-items.html %}
+            		{% endfor %}
+		
+							</div>
+	
+					</div>
+
+					<section class="pagination-section pagination-section-first text-center d-md-none">
+
+						<!-- PAGINATION -->
+						<!-- Проверка на больше одной страницы -->
+						{% if paginator.total_pages > 1 %}
+							{% if paginator.next_page %}
+							<a href="{{ paginator.next_page_path }}" class="button">Следующая страница <i class="fa fa-angle-double-right"></i></a>
+							{% endif %}
+						{% endif %}
+						
+						{% if paginator.page_trail %}
+						<div class="pagination">
+							<!-- Если есть предыдущая страница выводим ссылку -->
+							{% if paginator.previous_page %}
+							<a href="{{ paginator.previous_page_path }}" class="pagination-left" title="Предыдущая страница">&laquo;</a>
+							<!-- Если нет, выводим заглушку -->
+							{% else %}
+							<span class="pagination-left" title="Предыдущая страница">&laquo;</span>
+							{% endif %}
+
+							<!-- Номера страниц -->
+							{% for trail in paginator.page_trail %}
+								{% if page.url == trail.path %}
+									<span class="active">{{ trail.num }}</span>
+								{% else %}
+									<a href="{{ trail.path | remove: 'index.html' }}" title="{{ trail.title }}">{{ trail.num }}</a>
+								{% endif %}
+							{% endfor %}
+
+							<!-- Если есть следующая страница выводим ссылку -->
+							{% if paginator.next_page %}
+							<a href="{{ paginator.next_page_path }}" class="pagination-right" title="Следующая страница">&raquo;</a>
+							<!-- Если нет, выводим заглушку -->
+							{% else %}
+							<span class="pagination-right" title="Следующая страница">&raquo;</span>
+							{% endif %}
+						</div>
+						{% endif %}
+
+						<!-- PAGINATION END -->
+
+					</section>
+
+				</div>
+
+				<div class="col-md-4">
+
+					{% include /category-aside.html %}
+					
+				</div>
+
+			</div>
+		</div>
+
+		<section class="pagination-section text-center d-none d-md-block">
+			<!-- PAGINATION -->
+						<!-- Проверка на больше одной страницы -->
+						{% if paginator.total_pages > 1 %}
+							{% if paginator.next_page %}
+							<a href="{{ paginator.next_page_path }}" class="button">Следующая страница <i class="fa fa-angle-double-right"></i></a>
+							{% endif %}
+						{% endif %}
+						
+						{% if paginator.page_trail %}
+						<div class="pagination">
+							<!-- Если есть предыдущая страница выводим ссылку -->
+							{% if paginator.previous_page %}
+							<a href="{{ paginator.previous_page_path }}" class="pagination-left" title="Предыдущая страница">&laquo;</a>
+							<!-- Если нет, выводим заглушку -->
+							{% else %}
+							<span class="pagination-left" title="Предыдущая страница">&laquo;</span>
+							{% endif %}
+
+							<!-- Номера страниц -->
+							{% for trail in paginator.page_trail %}
+								{% if page.url == trail.path %}
+									<span class="active">{{ trail.num }}</span>
+								{% else %}
+									<a href="{{ trail.path | remove: 'index.html' }}" title="{{ trail.title }}">{{ trail.num }}</a>
+								{% endif %}
+							{% endfor %}
+
+							<!-- Если есть следующая страница выводим ссылку -->
+							{% if paginator.next_page %}
+							<a href="{{ paginator.next_page_path }}" class="pagination-right" title="Следующая страница">&raquo;</a>
+							<!-- Если нет, выводим заглушку -->
+							{% else %}
+							<span class="pagination-right" title="Следующая страница">&raquo;</span>
+							{% endif %}
+						</div>
+						{% endif %}
+
+						<!-- PAGINATION END -->
+		</section>
+
+	</div>
+
+{% include /footer.html %}

@@ -1,0 +1,26 @@
+<section class="first-section clearfix">
+   <div class="container-fluid">
+
+      <!-- Горизонтальная реклама -->
+      <!-- <div class="ad top-ad">
+         {% include /ad-horizontal.html %}
+      </div> -->
+
+      <div class="row no-gutters">
+
+         <!-- col-md-6 items -->
+         {% for post in site.categories.places limit: 2 offset: 0 %}
+         {% include /home-first-items-1.html %}
+         {% endfor %}
+         <!-- col-md-6 items -->
+
+         <!-- col-md-4 items -->
+         {% for post in site.categories.places limit: 3 offset: 2 %}
+         {% include /home-first-items-2.html %}
+         {% endfor %}
+         <!-- col-md-4 items -->
+
+      </div>
+
+   </div>
+</section>

@@ -1,0 +1,35 @@
+<section class="fourth-section">
+   <div class="container-fluid">
+      <div class="row">
+
+         <div class="col-sm-12">
+            <h2 class="fourth-section-header"><a href="blog/events">Мероприятия</a></h2>
+         </div>
+
+         <!-- При раскомментировании рекламы ниже, col-md-12 поменять на col-md-8 -->
+         <div class="col-md-12 col-sm-6">
+
+            <div class="row no-gutters">
+
+               {% for post in site.categories.events limit: 4 offset: 0 %}
+               {% include /four-lifehacks.html %}
+               {% endfor %}
+
+
+            </div>
+
+         </div>
+
+         <!-- === Реклама в низу сайдбара === -->
+         <!-- <div class="col-md-4 col-sm-6">
+
+            <div class="aside-box">
+               {% include /ad-lifehacks.html %}
+            </div>
+
+         </div> -->
+         <!-- === Реклама в низу сайдбара === -->
+
+      </div>
+   </div>
+</section>

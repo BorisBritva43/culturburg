@@ -1,0 +1,38 @@
+<!-- PAGINATION -->
+<!-- Проверка на больше одной страницы -->
+{% if paginator.total_pages > 1 %}
+	{% if paginator.next_page %}
+	<a href="{{ paginator.next_page_path }}" class="button">Следующая страница <i class="fa fa-angle-double-right"></i></a>
+	{% endif %}
+{% endif %}
+						
+{% if paginator.page_trail %}
+<div class="pagination">
+	<!-- Если есть предыдущая страница выводим ссылку -->
+	{% if paginator.previous_page %}
+	<a href="{{ paginator.previous_page_path }}" class="pagination-left" title="Предыдущая страница">&laquo;</a>
+	<!-- Если нет, выводим заглушку -->
+	{% else %}
+	<span class="pagination-left" title="Предыдущая страница">&laquo;</span>
+	{% endif %}
+
+	<!-- Номера страниц -->
+	{% for trail in paginator.page_trail %}
+		{% if page.url == trail.path %}
+			<span class="active">{{ trail.num }}</span>
+		{% else %}
+			<a href="{{ trail.path | remove: 'index.html' }}" title="{{ trail.title }}">{{ trail.num }}</a>
+		{% endif %}
+	{% endfor %}
+
+	<!-- Если есть следующая страница выводим ссылку -->
+	{% if paginator.next_page %}
+	<a href="{{ paginator.next_page_path }}" class="pagination-right" title="Следующая страница">&raquo;</a>
+	<!-- Если нет, выводим заглушку -->
+	{% else %}
+	<span class="pagination-right" title="Следующая страница">&raquo;</span>
+	{% endif %}
+</div>
+{% endif %}
+
+<!-- PAGINATION END -->

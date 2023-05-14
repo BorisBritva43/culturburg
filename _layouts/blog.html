@@ -1,0 +1,60 @@
+{% include /category-header.html %}
+
+{% include /top-line.html %}
+
+<!-- === Реклама в верху страницы === -->
+	<!-- <div class="cat-list-first">
+		<div class="container-fluid">
+
+			<div class="ad top-ad">
+				{% include /ad-horizontal.html %}
+			</div>
+
+		</div>
+	</div> -->
+	<!-- === Реклама в верху страницы === -->
+
+	<div class="cat-list">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-md-8">
+
+					<div class="all-posts-header">{{ page.title }}</div>
+
+					<div class="cat-list-wrap">
+
+						{% for post in paginator.posts %}
+							{% include /category-list-items.html %}
+						{% endfor %}
+	
+					</div>
+
+					<section class="pagination-section pagination-section-first text-center d-md-none">
+						<!-- Pagination -->
+							{% include /pagination.html %}
+						<!-- Pagination -->
+					</section>
+
+				</div>
+
+				<div class="col-md-4">
+					
+					<!-- Sidebar -->
+					{% include /category-aside.html %}
+					<!-- Sidebar -->
+
+				</div>
+
+			</div>
+		</div>
+
+		<section class="pagination-section text-center d-none d-md-block">
+			<!-- Pagination -->
+			{% include /pagination.html %}
+			<!-- Pagination -->
+		</section>
+
+	</div>
+
+{% include /footer.html %}
