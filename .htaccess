@@ -1,17 +1,18 @@
-AddDefultCharset UTF-8
-Options -Indexes
+# AddDefultCharset UTF-8
+# Options -Indexes
 
-RewriteEngine On
-
-# === With SSL ===
-# RewriteCond %{HTTP_HTTPS} !=on [NC] 
-# RewriteRule ^(.*)$ https://geektop.ru/$1 [R=301, L] 
-# SetEnvIf X-Forwarded-Proto https HTTPS=on 
+#RewriteEngine On 
 
 # === Without SSL ===
-RewriteCond %{HTTP_HOST}
-RewriteCond %{HTTP_HOST} www.geektop.ru [NC] 
-RewriteRule (.*) http://geektop.ru/$1 [R=301,L] 
+RewriteCond %{HTTP_HOST} ^www.kulturburg\.ru$ [NC]
+RewriteRule ^(.*)$ http://kulturburg.ru/$1 [R=301,L]
+
+# === With SSL ===
+RewriteEngine on
+SetEnvIf X-Forwarded-Proto https SERVER_PORT=443
+SetEnvIf X-Forwarded-Proto https HTTPS=on
+RewriteCond %{HTTP:HTTPS} !=on [NC]
+RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
 # === Block to download site ===
 RewriteCond %{HTTP_USER_AGENT} wget [NC] 

@@ -2,9 +2,10 @@ title: Интересные места СПб - куда сходить в Са�
 email: sanchos8_7@mail.ru
 description: Интересные места Петербурга. Идеи куда сходить в Санкт-Петербурге сегодня или на выходных. Самые интересные события Петербурга. Узнаете где весело и интересно провести время!
 themecolor: "#202225"
-imagehome: img/geektop.jpg
+imagehome: img/main.jpeg
 baseurl: "/"
-url: "http://geektop.ru"
+url: https://kulturburg.ru/
+favicon: img/favicon/favicon-180x180.png
 
 # Paginate settings
 plugins: [jekyll-paginate-v2]

@@ -6,16 +6,16 @@
    <meta charset="utf-8">
    <base href="{{ site.baseurl }}">
 
-   <title>{{ site.title }}</title>
+   <title>{{ page.title }}</title>
    <meta name="description" content="{{ site.description }}">
 
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
    <!-- Template Basic Images Start -->
-   <meta property="og:image" content="{{ site.imagehome }}">
-   <link rel="icon" href="img/favicon/favicon.ico">
-   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+   <meta property="og:image" content="{{ page.image }}">
+   <link rel="icon" href="{{ site.favicon }}">
+   <link rel="apple-touch-icon" sizes="180x180" href="{{ site.favicon }}">
    <!-- Template Basic Images End -->
 
    <!-- Custom Browsers Color Start -->
@@ -23,6 +23,13 @@
    <!-- Custom Browsers Color End -->
 
    <link rel="stylesheet" href="css/main.min.css">
+   <link rel="stylesheet" href="css/custom.css">
+
+   <meta name="yandex-verification" content="bcec2179630a3508" />
+
+   <!-- Yandex Native Ads -->
+   <script>window.yaContextCb=window.yaContextCb||[]</script>
+   <script src="https://yandex.ru/ads/system/context.js" async></script>
 
 </head>
 

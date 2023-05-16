@@ -1,0 +1,28 @@
+/* === IBG Style === */
+._ibg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+._ibg img {
+  display: none;
+}
+
+img.post-thumb {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 150px;
+  height: 150px;
+}
+
+.third-items {
+  display: block;
+  height: 195px;
+}
+
+/* === Yandex Native Ads === */
+.ya-grid-template.recommendation-label {
+  display: none!important;
+}
